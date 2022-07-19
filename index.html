@@ -64,7 +64,7 @@
                             </div>
                             <div>
                                 <div class="fw-500">{{contact.name}}</div>
-                                <div class="last-message">{{contact.messages[contact.messages.length - 1].text}}</div>
+                                <div v-if="contact.messages.length" class="last-message">{{contact.messages[contact.messages.length - 1].text}}</div>
                             </div>
                         </div>
                     </div>

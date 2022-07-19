@@ -235,7 +235,7 @@ i.fa-solid{
 /* # No chat panel */
 
 #chat, #no-chat{
-    width: 60%;
+    width: 70%;
 }
 
 #no-chat{
@@ -254,10 +254,6 @@ i.fa-solid{
 }
 
 /* # Chat */
-
-#chat{
-    width: 70%;
-}
 
 /* Chat panel */
 

@@ -239,18 +239,23 @@ const boolzapp = new Vue({
         getFilterInputFocus(){
           this.$refs.filterInput.focus();
         },
+        showMenuDropdown(i){
+          this.$refs.messageMenu[i].classList.add('clicked');
+          this.$refs.messageMenuContainer[i].classList.add('clicked');
+        },
+        hideMenuDropdown(i){
+          this.$refs.messageMenu[i].classList.remove('clicked');
+          this.$refs.messageMenuContainer[i].classList.remove('clicked');
+        },
         openMsgDropdown(i){
           if(this.$refs.messageMenu[i].classList.contains('clicked')){
-            this.$refs.messageMenu[i].classList.remove('clicked');
-            this.$refs.messageMenuContainer[i].classList.remove('clicked');
+            this.hideMenuDropdown(i);
           } else {
-            this.$refs.messageMenu[i].classList.add('clicked');
-            this.$refs.messageMenuContainer[i].classList.add('clicked');
+            this.showMenuDropdown(i);
           }
         },
         deleteMessage(i){
-          this.$refs.messageMenu[i].classList.remove('clicked');
-          this.$refs.messageMenuContainer[i].classList.remove('clicked');
+          this.hideMenuDropdown(i);
           this.contacts[this.currentContact].messages.splice(i, 1);
         },
     },
