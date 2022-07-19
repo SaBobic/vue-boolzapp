@@ -58,7 +58,7 @@
 
                     <!-- Contacts panel -->
                     <div class="bg-white ovflow-auto" id="contacts-panel">
-                        <div v-for="(contact, i) in contacts" v-show="filteredArray.includes(contact)" class="contact d-flex align-center c-pointer" :class="{'active' : currentContact === i}" @click="setActiveContact(i)">
+                        <div v-for="(contact, i) in filteredArray" v-show="contact.visible" class="contact d-flex align-center c-pointer" :class="{'active' : currentContact === i}" @click="setActiveContact(i)">
                             <div>
                                 <img :src="`img/avatar${contact.avatar}.jpg`" :alt="contact.name">
                             </div>

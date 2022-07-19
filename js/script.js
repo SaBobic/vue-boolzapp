@@ -204,9 +204,13 @@ const boolzapp = new Vue({
     },
     computed: {
         filteredArray(){
-            return this.contacts.filter(contact => contact.name.toLowerCase().includes(this.searchInputText));
+          return this.contacts.map(contact =>{
+            contact.visible = contact.name.toLowerCase().includes(this.searchInputText);
+            return contact;
+          });
         }
     },
+    // 
     methods: {
         setActiveContact(index){
           return this.currentContact = index;
