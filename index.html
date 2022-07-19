@@ -53,7 +53,7 @@
                     <div class="bg-white d-flex align-center position-relative" id="search-panel">
                         <i v-if="!searchInputText" class="fa-solid fa-magnifying-glass c-pointer" id="search-panel-magnifying-glass" @click="getFilterInputFocus"></i>
                         <i v-else class="fa-solid fa-arrow-left c-pointer" @click="searchInputText = ''"></i>
-                        <input class="bg-lightg h-100" type="text" placeholder="Cerca o inizia una nuova chat" id="contacts-filter-input" v-model.trim="searchInputText" @click="getFilterInputFocus">
+                        <input class="bg-lightg h-100" type="text" placeholder="Cerca o inizia una nuova chat" ref="filterInput" v-model.trim="searchInputText" @click="getFilterInputFocus">
                     </div>
 
                     <!-- Contacts panel -->

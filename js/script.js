@@ -235,7 +235,7 @@ const boolzapp = new Vue({
           this.newMessageText = '';
         },
         getFilterInputFocus(){
-            document.getElementById('contacts-filter-input').focus();
+          this.$refs.filterInput.focus();
         }
     },
 })
