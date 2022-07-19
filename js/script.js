@@ -212,8 +212,8 @@ const boolzapp = new Vue({
     },
     // 
     methods: {
-        setActiveContact(index){
-          return this.currentContact = index;
+        setActiveContact(i){
+          return this.currentContact = i;
         },
         getActualDate(){
           return dayjs().format('DD/MM/YYYY HH:mm:ss');
@@ -236,6 +236,20 @@ const boolzapp = new Vue({
         },
         getFilterInputFocus(){
           this.$refs.filterInput.focus();
-        }
+        },
+        openMsgDropdown(i){
+          if(this.$refs.messageMenu[i].classList.contains('clicked')){
+            this.$refs.messageMenu[i].classList.remove('clicked');
+            this.$refs.messageMenuContainer[i].classList.remove('clicked');
+          } else {
+            this.$refs.messageMenu[i].classList.add('clicked');
+            this.$refs.messageMenuContainer[i].classList.add('clicked');
+          }
+        },
+        deleteMessage(i){
+          this.$refs.messageMenu[i].classList.remove('clicked');
+          this.$refs.messageMenuContainer[i].classList.remove('clicked');
+          this.contacts[this.currentContact].messages.splice(i, 1);
+        },
     },
 })

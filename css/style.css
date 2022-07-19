@@ -233,11 +233,9 @@ i.fa-solid{
     height: calc(90vh - 130px);
     background-image: url('../img/mine.jpg');
     background-position: center;
-}
-
-#chat-panel .row{
-    width: 80%;
-    margin: 20px auto;
+    font-size: 15px;
+    line-height: 21px;
+    padding: 20px 40px;
 }
 
 #chat-panel .col{
@@ -275,6 +273,67 @@ i.fa-solid{
 
 #chat-panel .col.sent .message{
     background-color: var(--msg-out-bg);
+}
+
+#chat-panel .message-dropdown-container{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: none;
+}
+
+#chat-panel .message-dropdown-container.received{
+    background-color: #fff;
+    box-shadow: 0px 0px 3px 10px #fff;
+}
+
+#chat-panel .message-dropdown-container.sent{
+    background-color: var(--msg-out-bg);
+    box-shadow: 0px 0px 3px 10px var(--msg-out-bg);
+}
+
+#chat-panel .message:hover .message-dropdown-container{
+    display: block;
+}
+
+#chat-panel .fa-angle-down{
+    color: var(--secondary-color);
+    font-size: 20px;
+}
+
+#chat-panel .message-dropdown-menu{
+    background-color: #fff;
+    padding: 10px 0;
+    font-size: 16px;
+    line-height: 30px;
+    position: absolute;
+    top: 20px;
+    white-space: nowrap;
+    z-index: 1;
+    display: none;
+}
+
+#chat-panel .message-dropdown-menu.clicked,#chat-panel .message-dropdown-container.clicked{
+    display: block;
+}
+
+#chat-panel .message-dropdown-menu.received{
+    left: 0;
+}
+
+#chat-panel .message-dropdown-menu.sent{
+    right: calc(100% - 25px);
+}
+
+#chat-panel .message-dropdown-menu div{
+    padding: 10px 25px;
+}
+
+#chat-panel .message-dropdown-menu div:hover{
+    background-color: var(--lightg-bg);
 }
 
 /* Text panel */

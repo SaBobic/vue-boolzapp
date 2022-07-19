@@ -72,7 +72,7 @@
                 <div id="chat">
                     <!-- Contact panel -->
                         <div id="contact-panel" class="bg-lightg d-flex justify-between align-center">
-                            <div id="user-info" class="d-flex align-center">
+                            <div id="contact-info" class="d-flex align-center">
                                 <img :src="`img/avatar${contacts[currentContact].avatar}.jpg`" :alt="contacts[currentContact].name" class="c-pointer">
                                 <div class="fw-500">{{contacts[currentContact].name}}</div>
                             </div>
@@ -85,11 +85,16 @@
     
                         <!-- Chat panel -->
                         <div id="chat-panel" class="ovflow-auto">
-                            <div class="row">
-                                <div v-for="message in contacts[currentContact].messages" :class="['col', message.status]">
-                                    <div class="message">
-                                        <div>{{message.text}}</div>
-                                        <div class="message-date">{{message.date}}</div>
+                            <div v-for="(message, i) in contacts[currentContact].messages" :class="['col', message.status]">
+                                <div class="message position-relative">
+                                    <div>{{message.text}}</div>
+                                    <div class="message-date">{{message.date}}</div>
+                                    <div :class="['message-dropdown-container', 'c-pointer', message.status]" ref="messageMenuContainer">
+                                        <i class="fa-solid fa-angle-down position-center" @click="openMsgDropdown(i)"></i>
+                                        <div :class="['message-dropdown-menu', message.status]" ref="messageMenu">
+                                            <div @click="deleteMessage(i)">Cancella messaggio</div>
+                                            <div>Messaggio importante</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
