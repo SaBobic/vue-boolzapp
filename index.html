@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" />
+        <!-- My Style -->
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/style.css" />
+        <!-- Dayjs -->
+        <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/plugin/advancedFormat.js"></script>
+        <!-- Vue -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+        <title>BoolzApp</title>
+    </head>
+
+    <body>
+        <!-- Container -->
+        <div class="container h-100 d-flex align-center">
+            <!-- Boolzapp -->
+            <div class="d-flex" id="boolzapp">
+                <!-- # Contact section -->
+                <div id="contacts">
+                    <!-- User panel -->
+                    <div class="bg-lightg d-flex justify-between align-center" id="user-panel">
+                        <div class="d-flex align-center" id="user-info">
+                            <img :src="`img/avatar${user.avatar}.jpg`" :alt="user.name" class="c-pointer">
+                            <div class="fw-500">{{user.name}}</div>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-circle-notch c-pointer"></i>
+                            <i class="fa-solid fa-message c-pointer"></i>
+                            <i class="fa-solid fa-ellipsis-vertical c-pointer"></i>
+                        </div>
+                    </div>
+
+                    <!-- Notifications panel -->
+                    <div class="bg-notif d-flex align-center c-pointer" id="notif-panel">
+                        <div class="circle">
+                            <i class="fa-solid fa-bell-slash position-center"></i>
+                        </div>
+                        <div>
+                            <div class="fw-500">Ricevi notifiche di nuovi messaggi</div>
+                            <div id="notif-anchor">Attiva notifiche desktop</div>
+                        </div>
+                    </div>
+
+                    <!-- Search panel -->
+                    <div class="bg-white d-flex align-center position-relative" id="search-panel">
+                        <i v-if="!searchInputText" class="fa-solid fa-magnifying-glass c-pointer" id="search-panel-magnifying-glass" @click="getFilterInputFocus"></i>
+                        <i v-else class="fa-solid fa-arrow-left c-pointer" @click="searchInputText = ''"></i>
+                        <input class="bg-lightg h-100" type="text" placeholder="Cerca o inizia una nuova chat" id="contacts-filter-input" v-model.trim="searchInputText" @click="getFilterInputFocus">
+                    </div>
+
+                    <!-- Contacts panel -->
+                    <div class="bg-white ovflow-auto" id="contacts-panel">
+                        <div v-for="(contact, i) in contacts" v-show="filteredArray.includes(contact)" class="contact d-flex align-center c-pointer" :class="{'active' : currentContact === i}" @click="setActiveContact(i)">
+                            <div>
+                                <img :src="`img/avatar${contact.avatar}.jpg`" :alt="contact.name">
+                            </div>
+                            <div>
+                                <div class="fw-500">{{contact.name}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- # Chat section -->
+                <div id="chat">
+                    <!-- Contact panel -->
+                        <div id="contact-panel" class="bg-lightg d-flex justify-between align-center">
+                            <div id="user-info" class="d-flex align-center">
+                                <img :src="`img/avatar${contacts[currentContact].avatar}.jpg`" :alt="contacts[currentContact].name" class="c-pointer">
+                                <div class="fw-500">{{contacts[currentContact].name}}</div>
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-magnifying-glass c-pointer"></i>
+                                <i class="fa-solid fa-paperclip c-pointer"></i>
+                                <i class="fa-solid fa-ellipsis-vertical c-pointer"></i>
+                            </div>
+                        </div>
+    
+                        <!-- Chat panel -->
+                        <div id="chat-panel" class="ovflow-auto">
+                            <div class="row">
+                                <div v-for="message in contacts[currentContact].messages" :class="['col', message.status]">
+                                    <div class="message">
+                                        <div>{{message.text}}</div>
+                                        <div class="message-date">{{message.date}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Text panel -->
+                        <div id="text-panel" class="bg-lightg d-flex align-center">
+                            <div class="text-icon-panel position-relative">
+                                <i class="fa-solid fa-face-smile position-center c-pointer"></i>
+                            </div>
+                            <div id="text-input" class="h-100">
+                                <input class="bg-lightg w-100 h-100" type="text" v-model.trim="newMessageText" @keyup.enter="addMessage" placeholder="Scrivi un messaggio">
+                            </div>
+                            <div class="text-icon-panel position-relative">
+                                <i class="fa-solid fa-microphone position-center c-pointer"></i>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <!-- JavaScript -->
+        <script src="js/script.js"></script>
+    </body>
+</html>
