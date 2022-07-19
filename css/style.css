@@ -221,6 +221,16 @@ i.fa-solid{
     margin-right: 20px;
 }
 
+#contacts-panel .last-message{
+    font-size: 14px;
+    color: var(--secondary-color);
+    padding-top: 8px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 230px;
+}
+
 /* # Chat */
 
 #chat{
