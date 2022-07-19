@@ -70,7 +70,14 @@
                     </div>
                 </div>
                 <!-- # Chat section -->
-                <div id="chat">
+                <div v-if="isNoChat" id="no-chat" class="h-100 d-flex align-center justify-center">
+                    <div>
+                        <h1>BoolzApp Web</h1>
+                        <p>Invia e ricevi messaggi senza connettere il telefono.</p>
+                        <p>Usa BoolzApp su un massimo di 4 dispositivi e 1 telefono contemporaneamente.</p>
+                    </div>
+                </div>
+                <div v-else id="chat">
                     <!-- Contact panel -->
                         <div id="contact-panel" class="bg-lightg d-flex justify-between align-center">
                             <div id="contact-info" class="d-flex align-center">

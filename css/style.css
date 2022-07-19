@@ -232,6 +232,27 @@ i.fa-solid{
     max-width: 230px;
 }
 
+/* # No chat panel */
+
+#chat, #no-chat{
+    width: 60%;
+}
+
+#no-chat{
+    background-color: var(--lightg-bg);
+    color: var(--secondary-color);
+    text-align: center;
+}
+
+#no-chat h1{
+    margin-bottom: 20px;
+}
+
+#no-chat p{
+    margin-bottom: 7px;
+    font-size: 14px;
+}
+
 /* # Chat */
 
 #chat{

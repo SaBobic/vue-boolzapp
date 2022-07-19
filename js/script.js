@@ -198,9 +198,10 @@ const boolzapp = new Vue({
                 ],
               },
         ],
-        currentContact: 0,
+        currentContact: '',
         newMessageText: '',
         searchInputText: '',
+        isNoChat: true,
     },
     computed: {
         filteredArray(){
@@ -213,7 +214,8 @@ const boolzapp = new Vue({
     // 
     methods: {
         setActiveContact(i){
-          return this.currentContact = i;
+          if (this.isNoChat === true) this.isNoChat = false;
+          this.currentContact = i;
         },
         getActualDate(){
           return dayjs().format('DD/MM/YYYY HH:mm:ss');
