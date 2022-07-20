@@ -266,6 +266,13 @@ i.fa-solid{
     padding: 20px 40px;
 }
 
+#contact-info .online-status{
+    color: var(--secondary-color);
+    padding-top: 5px;
+    font-size: 13px;
+    line-height: 15px;
+}
+
 #chat-panel .col{
     display: flex;
 }

@@ -11,6 +11,7 @@ const boolzapp = new Vue({
               name: 'Mike',
               avatar: '_1',
               visible: true,
+              status: 'Online',
               messages: [{
                 date: '10/01/2020 15:30:55',
                 text: 'Hai portato a spasso il cane?',
@@ -32,6 +33,7 @@ const boolzapp = new Vue({
               name: 'Max',
               avatar: '_2',
               visible: true,
+              status: 'Online',
               messages: [{
                 date: '20/03/2020 16:30:00',
                 text: 'Ciao come stai?',
@@ -53,6 +55,7 @@ const boolzapp = new Vue({
               name: 'Will',
               avatar: '_3',
               visible: true,
+              status: 'Online',
               messages: [{
                 date: '28/03/2020 10:10:40',
                 text: 'La Marianna va in campagna',
@@ -74,6 +77,7 @@ const boolzapp = new Vue({
               name: 'Papà',
               avatar: '_4',
               visible: true,
+              status: 'Online',
               messages: [{
                 date: '10/01/2020 15:30:55',
                 text: 'Lo sai che ha aperto una nuova pizzeria?',
@@ -90,6 +94,7 @@ const boolzapp = new Vue({
                 name: 'Dustin',
                 avatar: '_5',
                 visible: true,
+                status: 'Online',
                 messages: [{
                   date: '10/01/2020 15:30:55',
                   text: 'Hai portato a spasso il cane?',
@@ -111,6 +116,7 @@ const boolzapp = new Vue({
                 name: 'Lucas',
                 avatar: '_6',
                 visible: true,
+                status: 'Online',
                 messages: [{
                   date: '20/03/2020 16:30:00',
                   text: 'Ciao come stai?',
@@ -132,6 +138,7 @@ const boolzapp = new Vue({
                 name: 'Joyce',
                 avatar: '_7',
                 visible: true,
+                status: 'Online',
                 messages: [{
                   date: '28/03/2020 10:10:40',
                   text: 'La Marianna va in campagna',
@@ -153,6 +160,7 @@ const boolzapp = new Vue({
                 name: 'Steve',
                 avatar: '_8',
                 visible: true,
+                status: 'Online',
                 messages: [{
                   date: '10/01/2020 15:30:55',
                   text: 'Lo sai che ha aperto una nuova pizzeria?',
@@ -169,6 +177,7 @@ const boolzapp = new Vue({
                 name: 'Nancy',
                 avatar: '_9',
                 visible: true,
+                status: 'Online',
                 messages: [{
                   date: '10/01/2020 15:30:55',
                   text: 'Lo sai che ha aperto una nuova pizzeria?',
@@ -185,6 +194,7 @@ const boolzapp = new Vue({
                 name: '001',
                 avatar: '_10',
                 visible: true,
+                status: 'Online',
                 messages: [{
                   date: '10/01/2020 15:30:55',
                   text: 'Lo sai che ha aperto una nuova pizzeria?',
@@ -201,8 +211,9 @@ const boolzapp = new Vue({
         currentContact: '',
         newMessageText: '',
         searchInputText: '',
-        isNoChat: true,
         isMsgDropdown: '',
+        isNoChat: true,
+        isTyping: false,
     },
     computed: {
         filteredArray(){
@@ -231,12 +242,20 @@ const boolzapp = new Vue({
           this.contacts[this.currentContact].messages.push(message);
         },
         getResponse(){
-          setTimeout(() => this.setMessage('ok', 'received'), 1000);
+          this.isTyping = true;
+          setTimeout(() => {
+          this.isTyping = false;
+            this.setMessage('ok', 'received');
+          }, 1000);
         },
         addMessage(){
-          this.setMessage(this.newMessageText, 'sent');
-          this.getResponse();
-          this.newMessageText = '';
+          if(this.newMessageText){
+            this.setMessage(this.newMessageText, 'sent');
+            this.getResponse();
+            this.newMessageText = '';
+          } else {
+            return;
+          }
         },
         getFilterInputFocus(){
           this.$refs.filterInput.focus();

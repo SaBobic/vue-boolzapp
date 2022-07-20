@@ -64,7 +64,7 @@
                             </div>
                             <div>
                                 <div class="fw-500">{{contact.name}}</div>
-                                <div v-if="contact.messages.length" class="last-message">{{contact.messages[contact.messages.length - 1].text}}</div>
+                                <div class="last-message">{{contact.messages[contact.messages.length - 1].text}}</div>
                             </div>
                         </div>
                     </div>
@@ -82,7 +82,11 @@
                         <div id="contact-panel" class="bg-lightg d-flex justify-between align-center">
                             <div id="contact-info" class="d-flex align-center">
                                 <img :src="`img/avatar${contacts[currentContact].avatar}.jpg`" :alt="contacts[currentContact].name" class="c-pointer">
-                                <div class="fw-500">{{contacts[currentContact].name}}</div>
+                                <div>
+                                    <div class="fw-500">{{contacts[currentContact].name}}</div>
+                                    <div v-if="isTyping === true" class="online-status">{{contacts[currentContact].status = 'Sta scrivendo...'}}</div>
+                                    <div v-else class="online-status">{{contacts[currentContact].status = 'Online'}}</div>
+                                </div>
                             </div>
                             <div>
                                 <i class="fa-solid fa-magnifying-glass c-pointer"></i>
