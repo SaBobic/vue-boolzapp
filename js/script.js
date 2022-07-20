@@ -202,6 +202,7 @@ const boolzapp = new Vue({
         newMessageText: '',
         searchInputText: '',
         isNoChat: true,
+        isMsgDropdown: '',
     },
     computed: {
         filteredArray(){
@@ -215,6 +216,7 @@ const boolzapp = new Vue({
     methods: {
         setActiveContact(i){
           if (this.isNoChat === true) this.isNoChat = false;
+          if (!isNaN(this.isMsgDropdown)) this.isMsgDropdown = '';
           this.currentContact = i;
         },
         getActualDate(){
@@ -239,24 +241,12 @@ const boolzapp = new Vue({
         getFilterInputFocus(){
           this.$refs.filterInput.focus();
         },
-        showMenuDropdown(i){
-          this.$refs.messageMenu[i].classList.add('clicked');
-          this.$refs.messageMenuContainer[i].classList.add('clicked');
-        },
-        hideMenuDropdown(i){
-          this.$refs.messageMenu[i].classList.remove('clicked');
-          this.$refs.messageMenuContainer[i].classList.remove('clicked');
-        },
         openMsgDropdown(i){
-          if(this.$refs.messageMenu[i].classList.contains('clicked')){
-            this.hideMenuDropdown(i);
-          } else {
-            this.showMenuDropdown(i);
-          }
+          return this.isMsgDropdown === i ? this.isMsgDropdown = '' : this.isMsgDropdown = i;
         },
         deleteMessage(i){
-          this.hideMenuDropdown(i);
           this.contacts[this.currentContact].messages.splice(i, 1);
+          this.isMsgDropdown = '';
         },
     },
 })

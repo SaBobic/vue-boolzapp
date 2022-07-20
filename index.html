@@ -97,9 +97,9 @@
                                 <div class="message position-relative">
                                     <div>{{message.text}}</div>
                                     <div class="message-date">{{message.date}}</div>
-                                    <div :class="['message-dropdown-container', 'c-pointer', message.status]" ref="messageMenuContainer">
+                                    <div :class="['message-dropdown-container', 'c-pointer', message.status, {'clicked' : isMsgDropdown === i}]">
                                         <i class="fa-solid fa-angle-down position-center" @click="openMsgDropdown(i)"></i>
-                                        <div :class="['message-dropdown-menu', message.status]" ref="messageMenu">
+                                        <div :class="['message-dropdown-menu', message.status, {'clicked' : isMsgDropdown === i}]">
                                             <div @click="deleteMessage(i)">Cancella messaggio</div>
                                             <div>Messaggio importante</div>
                                         </div>
